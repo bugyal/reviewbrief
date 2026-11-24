@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reviewbrief"
+version = "2.0.0"
+description = "Multi-agent review triage: ingest outputs from several coding agents, surface cross-agent contradictions, risk-rank a review queue with per-item reject criteria and time estimates, and flag grader tests rewritten by their author"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "bugyal coding" }]
+keywords = ["agents", "code-review", "triage", "multi-agent", "contradictions"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+reviewbrief = "reviewbrief.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/bugyal/reviewbrief"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,35 @@
+[
+  {"agent": "claude", "source_kind": "claude_code",
+   "claims": [
+     {"claim": "login.py contains the rate limiter", "kind": "file_contains", "subject": "src/auth/login.py"},
+     {"claim": "full test suite passes", "kind": "tests_pass", "subject": "tests/"}
+   ],
+   "changes": [
+     {"id": "C1", "path": "src/auth/login.py", "description": "Add rate limiter to login flow", "lines_changed": 45, "tests_added": true, "kind": "feature"},
+     {"id": "C2", "path": "db/migrations/009_add_lockouts.py", "description": "Account lockout table", "lines_changed": 80, "tests_added": false, "kind": "migration"}
+   ],
+   "tests_touched": [
+     {"path": "tests/test_login.py", "rewritten_by": "claude", "prev_author": "human"}
+   ]},
+  {"agent": "codex", "source_kind": "codex",
+   "statements": [
+     {"statement": "rate limiter not present in login", "kind": "file_absent", "subject": "src/auth/login.py"},
+     {"statement": "integration tests fail on lockouts", "kind": "tests_fail", "subject": "tests/"}
+   ],
+   "changes": [
+     {"id": "X1", "filepath": "src/auth/login.py", "summary": "Revert lockout hook", "lines": 12, "with_tests": false, "type": "fix"}
+   ],
+   "tests_touched": [
+     {"filepath": "tests/test_login.py", "rewritten_by": "codex", "prev_author": "claude"}
+   ]},
+  {"agent": "planner", "source_kind": "planner",
+   "assertions": [
+     {"statement": "lockout migration done", "kind": "task_done", "subject": "task:lockouts"}
+   ],
+   "tasks": [
+     {"id": "P1", "path": "infra/queue.py", "summary": "Queue worker for lockout sync", "lines": 30, "kind": "infra", "with_tests": false}
+   ],
+   "tests_touched": [
+     {"path": "tests/test_queue.py", "rewritten_by": "planner", "prev_author": null}
+   ]}
+]
